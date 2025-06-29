@@ -1,7 +1,8 @@
 import ytdl from '@distube/ytdl-core'
+import axios from 'axios'
+import * as cheerio from 'cheerio'
 import type { FastifyInstance } from 'fastify'
 import fp from 'fastify-plugin'
-import youtubedl from 'youtube-dl-exec'
 
 declare module 'fastify' {
   export interface FastifyInstance {
@@ -13,20 +14,27 @@ function createYtdlService(fastify: FastifyInstance) {
   const services = {
     async getTitle(url: string) {
       try {
-        const title = await youtubedl.youtubeDl(url, {
-          // @ts-ignore
-          print: '%(title)s', // Only extract title
-          skipDownload: true,
-          noPlaylist: true,
-          addHeader: ['User-Agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'],
+        const response = await axios.get(url, {
+          headers: {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+          },
         })
 
-        return title as unknown as string
+        const $ = cheerio.load(response.data)
+        return $('meta[property="og:title"]').attr('content')
+
+        // const title = await youtubedl.youtubeDl(url, {
+        //   // @ts-ignore
+        //   print: '%(title)s', // Only extract title
+        //   skipDownload: true,
+        //   noPlaylist: true,
+        //   addHeader: ['User-Agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'],
+        // })
+        // return title as unknown as string
         // const agent = ytdl.createAgent([
         //   { name: 'VISITOR_INFO1_LIVE', value: 'some_value' },
         //   { name: 'CONSENT', value: 'YES+1' },
         // ])
-
         // const info = await ytdl.getBasicInfo(url, {
         //   agent,
         //   requestOptions: {
