@@ -2,13 +2,14 @@
   "name": "kanakana",
   "version": "1.0.0",
   "description": "Your Japanese Text Buddy",
-  "main": "index.js",
+  "main": "dist/index.js",
   "type": "module",
   "scripts": {
     "dev": "tsx --env-file=.env --watch src/index.ts",
     "build": "tsc",
     "lint": "biome check",
-    "lint:fix": "biome check --write"
+    "lint:fix": "biome check --write",
+    "start": "node dist/index.js"
   },
   "repository": {
     "type": "git",
