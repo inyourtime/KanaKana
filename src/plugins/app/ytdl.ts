@@ -1,4 +1,3 @@
-import ytdl from '@distube/ytdl-core'
 import axios from 'axios'
 import * as cheerio from 'cheerio'
 import type { FastifyInstance } from 'fastify'
