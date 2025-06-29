@@ -8,13 +8,15 @@ declare module 'fastify' {
   }
 }
 
-function createYtdlService(_fastify: FastifyInstance) {
+function createYtdlService(fastify: FastifyInstance) {
   const services = {
     async getTitle(url: string) {
       try {
         const info = await ytdl.getBasicInfo(url)
         return info.videoDetails.title
-      } catch {
+      } catch (error) {
+        console.log(error)
+        fastify.log.error(error)
         return null
       }
     },
