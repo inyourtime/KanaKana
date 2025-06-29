@@ -1,0 +1,43 @@
+{
+  "name": "kanakana",
+  "version": "1.0.0",
+  "description": "Your Japanese Text Buddy",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx --env-file=.env --watch src/index.ts",
+    "build": "tsc",
+    "lint": "biome check",
+    "lint:fix": "biome check --write"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/inyourtime/KanaKana.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/inyourtime/KanaKana/issues"
+  },
+  "homepage": "https://github.com/inyourtime/KanaKana#readme",
+  "dependencies": {
+    "@distube/ytdl-core": "^4.16.12",
+    "@fastify/cors": "^11.0.1",
+    "@fastify/helmet": "^13.0.1",
+    "@fastify/rate-limit": "^10.3.0",
+    "@fastify/swagger": "^9.5.1",
+    "@fastify/type-provider-typebox": "^5.1.0",
+    "@sinclair/typebox": "^0.34.37",
+    "fastify": "^5.4.0",
+    "fastify-plugin": "^5.0.1",
+    "fastify-route-preset": "^0.1.3",
+    "wanakana": "^5.3.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.0.6",
+    "@types/node": "^24.0.7",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3"
+  }
+}

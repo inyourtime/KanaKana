@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "module": "NodeNext",
+    "target": "ES2023",
+    "moduleResolution": "NodeNext",
+    "lib": ["ESNext"],
+    "rootDir": "src",
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "strict": true,
+    "resolveJsonModule": true,
+    "removeComments": true,
+    "newLine": "lf",
+    "noUnusedLocals": true,
+    "noFallthroughCasesInSwitch": true,
+    "isolatedModules": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "strictPropertyInitialization": true,
+    "outDir": "dist"
+  },
+  "include": ["@types", "src/**/*.ts"],
+  "exclude": ["node_modules", "dist", "test", "scripts"]
+}
