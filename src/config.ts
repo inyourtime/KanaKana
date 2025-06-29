@@ -11,6 +11,8 @@ declare module 'fastify' {
 const schema = Type.Object({
   PORT: Type.Number({ default: 5000 }),
   HOST: Type.String({ default: '0.0.0.0' }),
+  YOUTUBE_API_KEY: Type.String(),
+  GOOGLE_API_URL: Type.String({ default: 'https://www.googleapis.com' }),
 })
 
 export default fp(

@@ -14,7 +14,7 @@ export const options: RouteOption = {
 }
 
 const route: FastifyPluginAsyncTypebox = async (fastify) => {
-  const { ytdl, wanakana } = fastify
+  const { youtube, wanakana } = fastify
 
   fastify.get(
     '/',
@@ -33,10 +33,16 @@ const route: FastifyPluginAsyncTypebox = async (fastify) => {
       },
     },
     async (req) => {
-      const videoTitle = await ytdl.getTitle(req.query.youtube_url)
+      const { youtube_url } = req.query
+      const videoId = youtube_url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/)?.[1]
+      if (!videoId) {
+        throw fastify.error.badRequest('Invalid YouTube URL')
+      }
+
+      const videoTitle = await youtube.fetchTitle(videoId)
 
       if (!videoTitle) {
-        throw fastify.error.badRequest('Invalid YouTube URL')
+        throw fastify.error.badRequest('Failed to fetch video title')
       }
 
       return wanakana.convert(videoTitle)
