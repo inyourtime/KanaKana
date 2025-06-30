@@ -26,7 +26,7 @@ async function buildFileTree(dir: string, indexPattern?: RegExp) {
     const fullPath = join(dir, entry.name)
 
     if (entry.isDirectory()) {
-      const subFiles = await buildFileTree(fullPath)
+      const subFiles = await buildFileTree(fullPath, indexPattern)
       files.push(...subFiles)
     } else if (entry.isFile() && isValidPluginFile(entry.name, indexPattern)) {
       files.push(fullPath)

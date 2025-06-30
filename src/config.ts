@@ -13,6 +13,10 @@ const schema = Type.Object({
   HOST: Type.String({ default: '0.0.0.0' }),
   YOUTUBE_API_KEY: Type.String(),
   GOOGLE_API_URL: Type.String({ default: 'https://www.googleapis.com' }),
+  LINE_CHANNEL_SECRET: Type.String(),
+  LINE_CHANNEL_ACCESS_TOKEN: Type.String(),
+  LINE_ENDPOINT: Type.String({ default: 'https://api.line.me' }),
+  API_KEY: Type.String(),
 })
 
 export default fp(

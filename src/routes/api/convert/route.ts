@@ -31,6 +31,7 @@ const route: FastifyPluginAsyncTypebox = async (fastify) => {
           400: UnsafeRef(ApiErrorSchema, { description: 'Bad Request' }),
         },
       },
+      config: { auth: true },
     },
     async (req) => {
       const { youtube_url } = req.query

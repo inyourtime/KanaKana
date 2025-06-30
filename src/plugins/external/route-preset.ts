@@ -19,6 +19,19 @@ export default fp(async function (fastify) {
         ...presetOptions.config,
         ...routeOptions.config,
       }
+
+      if (routeOptions.config.auth === true) {
+        const existingOnRequest = routeOptions.onRequest || []
+        routeOptions.onRequest = [
+          ...(Array.isArray(existingOnRequest) ? existingOnRequest : [existingOnRequest]),
+          fastify.verifyApiKey,
+        ]
+
+        routeOptions.schema = {
+          ...routeOptions.schema,
+          security: [{ ApiKeyAuth: [] }],
+        }
+      }
     },
   })
 })
