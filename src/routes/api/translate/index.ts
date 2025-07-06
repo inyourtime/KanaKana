@@ -35,7 +35,7 @@ const route: FastifyPluginAsyncTypebox = async (fastify) => {
     },
     async (req) => {
       const { youtube_url } = req.query
-      const videoId = youtube_url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/)?.[1]
+      const videoId = youtube.extractYouTubeVideoId(youtube_url)
       if (!videoId) {
         throw fastify.error.badRequest('Invalid YouTube URL')
       }
