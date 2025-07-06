@@ -1,7 +1,7 @@
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox'
 import type { RouteOption } from '../../types/plugin-type.js'
 
-export const options: RouteOption = {
+export const autoConfig: RouteOption = {
   preset: {
     schema: { hide: true },
   },

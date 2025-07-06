@@ -16,6 +16,17 @@ export default fp(async function (fastify) {
         description: 'Your Japanese Text Buddy.',
         version: '1.0.0',
       },
+      components: {
+        securitySchemes: {
+          ApiKeyAuth: {
+            type: 'apiKey',
+            in: 'header',
+            name: 'x-api-key',
+            description: 'API key for authentication',
+          },
+        },
+      },
+      security: [{ ApiKeyAuth: [] }],
     },
   })
 
