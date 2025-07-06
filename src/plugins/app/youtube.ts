@@ -15,6 +15,8 @@ type GoogleApiResponse = {
   }[]
 }
 
+const YOUTUBE_URL_REGEX = /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/
+
 function createYoutubeService({ config, log }: FastifyInstance) {
   const services = {
     async fetchTitle(videoId: string) {
@@ -30,6 +32,11 @@ function createYoutubeService({ config, log }: FastifyInstance) {
       log.error(JSON.stringify(data))
 
       return null
+    },
+
+    extractYouTubeVideoId(text: string) {
+      const match = text.match(YOUTUBE_URL_REGEX)
+      return match?.[1] || null
     },
   }
 

@@ -1,5 +1,5 @@
 import { type Static, Type } from '@sinclair/typebox'
-import { Value } from '@sinclair/typebox/value'
+import envSchema from 'env-schema'
 import fp from 'fastify-plugin'
 
 declare module 'fastify' {
@@ -17,11 +17,12 @@ const schema = Type.Object({
   LINE_CHANNEL_ACCESS_TOKEN: Type.String(),
   LINE_ENDPOINT: Type.String({ default: 'https://api.line.me' }),
   API_KEY: Type.String(),
+  GOOGLE_TRANSLATE_API_KEY: Type.String(),
 })
 
 export default fp(
   async function (fastify) {
-    const config = Value.Parse(schema, process.env)
+    const config = envSchema<Static<typeof schema>>({ schema })
 
     fastify.decorate('config', config)
   },

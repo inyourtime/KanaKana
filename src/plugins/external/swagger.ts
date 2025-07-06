@@ -26,6 +26,7 @@ export default fp(async function (fastify) {
           },
         },
       },
+      security: [{ ApiKeyAuth: [] }],
     },
   })
 
